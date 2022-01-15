@@ -1,0 +1,103 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevOps", "DevOps", "{12FE51FE-6D5A-4CEF-BD24-6F3941EDDE58}"
+	ProjectSection(SolutionItems) = preProject
+		DevOps\docker-compose.yml = DevOps\docker-compose.yml
+		DevOps\run.cmd = DevOps\run.cmd
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4EA62372-18D7-4454-8AB9-7CD32896732F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{FFCDF031-5CBC-4183-9BEE-A5A1FCA9E31D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CosmosDBClientSetup", "Utilities\CosmosDBClientSetup\CosmosDBClientSetup.csproj", "{7CA91243-02CF-4678-8583-2D2E57BE7D0B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpClientSetup", "Utilities\HttpClientSetup\HttpClientSetup.csproj", "{4AECB077-2CD7-4024-AD18-0A5AF7C4D63F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueueClientSetup", "Utilities\QueueClientSetup\QueueClientSetup.csproj", "{46B929FB-2198-4E7A-A820-B6B96F4CBD22}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{2ECE4B61-3B6B-4270-8978-07575483BC7B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpTriggerQueueOutput", "Services\HttpTriggerQueueOutput\HttpTriggerQueueOutput.csproj", "{B3410824-D664-46BA-951A-80668BA77559}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueueTriggerCosmosOutput", "Services\QueueTriggerCosmosOutput\QueueTriggerCosmosOutput.csproj", "{CC61FAC6-EEA8-46C5-A713-F22AA379F4F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{317CDCEB-A143-4976-9919-382CA9CD47FF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI", "Client\UI\UI.csproj", "{1F1F824A-8292-4FB2-BADD-99CE7178704A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpTriggerCosmosOutputTest", "Tests\HttpTriggerCosmosOutputTest\HttpTriggerCosmosOutputTest.csproj", "{9E5B65E5-BC7A-4A0C-BC37-C17520A18D1D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpTriggerQueueOutputTest", "Tests\HttpTriggerQueueOutputTest\HttpTriggerQueueOutputTest.csproj", "{C45D2E10-9E86-470A-933D-250739DEB8A3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueueTriggerCosmosOutputTest", "Tests\QueueTriggerCosmosOutputTest\QueueTriggerCosmosOutputTest.csproj", "{4528C14F-ABEA-4754-8950-5276F7F781E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{09E9E7CD-9B72-413E-B639-825CEA56FBB7}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7CA91243-02CF-4678-8583-2D2E57BE7D0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CA91243-02CF-4678-8583-2D2E57BE7D0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CA91243-02CF-4678-8583-2D2E57BE7D0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CA91243-02CF-4678-8583-2D2E57BE7D0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AECB077-2CD7-4024-AD18-0A5AF7C4D63F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AECB077-2CD7-4024-AD18-0A5AF7C4D63F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AECB077-2CD7-4024-AD18-0A5AF7C4D63F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AECB077-2CD7-4024-AD18-0A5AF7C4D63F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46B929FB-2198-4E7A-A820-B6B96F4CBD22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46B929FB-2198-4E7A-A820-B6B96F4CBD22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46B929FB-2198-4E7A-A820-B6B96F4CBD22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46B929FB-2198-4E7A-A820-B6B96F4CBD22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3410824-D664-46BA-951A-80668BA77559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3410824-D664-46BA-951A-80668BA77559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3410824-D664-46BA-951A-80668BA77559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3410824-D664-46BA-951A-80668BA77559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC61FAC6-EEA8-46C5-A713-F22AA379F4F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC61FAC6-EEA8-46C5-A713-F22AA379F4F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC61FAC6-EEA8-46C5-A713-F22AA379F4F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC61FAC6-EEA8-46C5-A713-F22AA379F4F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F1F824A-8292-4FB2-BADD-99CE7178704A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F1F824A-8292-4FB2-BADD-99CE7178704A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F1F824A-8292-4FB2-BADD-99CE7178704A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F1F824A-8292-4FB2-BADD-99CE7178704A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E5B65E5-BC7A-4A0C-BC37-C17520A18D1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E5B65E5-BC7A-4A0C-BC37-C17520A18D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E5B65E5-BC7A-4A0C-BC37-C17520A18D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E5B65E5-BC7A-4A0C-BC37-C17520A18D1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C45D2E10-9E86-470A-933D-250739DEB8A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C45D2E10-9E86-470A-933D-250739DEB8A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C45D2E10-9E86-470A-933D-250739DEB8A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C45D2E10-9E86-470A-933D-250739DEB8A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4528C14F-ABEA-4754-8950-5276F7F781E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4528C14F-ABEA-4754-8950-5276F7F781E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4528C14F-ABEA-4754-8950-5276F7F781E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4528C14F-ABEA-4754-8950-5276F7F781E8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7CA91243-02CF-4678-8583-2D2E57BE7D0B} = {FFCDF031-5CBC-4183-9BEE-A5A1FCA9E31D}
+		{4AECB077-2CD7-4024-AD18-0A5AF7C4D63F} = {FFCDF031-5CBC-4183-9BEE-A5A1FCA9E31D}
+		{46B929FB-2198-4E7A-A820-B6B96F4CBD22} = {FFCDF031-5CBC-4183-9BEE-A5A1FCA9E31D}
+		{B3410824-D664-46BA-951A-80668BA77559} = {2ECE4B61-3B6B-4270-8978-07575483BC7B}
+		{CC61FAC6-EEA8-46C5-A713-F22AA379F4F2} = {2ECE4B61-3B6B-4270-8978-07575483BC7B}
+		{1F1F824A-8292-4FB2-BADD-99CE7178704A} = {317CDCEB-A143-4976-9919-382CA9CD47FF}
+		{9E5B65E5-BC7A-4A0C-BC37-C17520A18D1D} = {4EA62372-18D7-4454-8AB9-7CD32896732F}
+		{C45D2E10-9E86-470A-933D-250739DEB8A3} = {4EA62372-18D7-4454-8AB9-7CD32896732F}
+		{4528C14F-ABEA-4754-8950-5276F7F781E8} = {4EA62372-18D7-4454-8AB9-7CD32896732F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4A883B06-E511-4E8F-8AA3-BCEC193923AD}
+	EndGlobalSection
+EndGlobal

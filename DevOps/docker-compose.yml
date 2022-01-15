@@ -1,0 +1,67 @@
+version: '3.4'
+
+services:
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite
+    hostname: azurite
+    command: "azurite-queue --queueHost 0.0.0.0 --loose --skipApiVersionCheck -d /tmp/azurite_debug.log"
+    ports:
+     - "10000:10000"
+     - "10001:10001"
+    volumes:
+     - ./data/azurite:/data
+
+  #cosmosdb:
+  #  container_name: cosmosdb
+  #  image: "mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator"
+  #  tty: true
+  #  restart: always
+  #  mem_limit: 2G
+  #  cpu_count: 2
+  #  environment:
+  #    - AZURE_COSMOS_EMULATOR_PARTITION_COUNT=10
+  #    - AZURE_COSMOS_EMULATOR_ENABLE_DATA_PERSISTENCE=true
+  #  ports:
+  #     - "8081:8081"
+  #     - "8900:8900"
+  #     - "8901:8901"
+  #     - "8979:8979"
+  #     - "10250:10250"
+  #     - "10251:10251"
+  #     - "10252:10252"
+  #     - "10253:10253"
+  #     - "10254:10254"
+  #     - "10255:10255"
+  #     - "10256:10256"
+  #     - "10350:10350"
+  #  volumes:
+  #     - vol_cosmos:/data/db
+    
+  mysqldb:
+    image: mysql
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootp
+      MYSQL_DATABASE: reporting
+      MYSQL_USER: reportaccessor
+      MYSQL_PASSWORD: reportp
+    ports:
+        - "3306:3306"
+        - "8889:8889"
+        - "33060:33060"
+        - "33061:33061"
+        - "33062:33062"
+    working_dir: /var/lib/mysql
+    volumes:
+        - "./mysql:/var/lib/mysql:rw"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+      
+volumes: 
+  vol_cosmos:
+  mysql:
