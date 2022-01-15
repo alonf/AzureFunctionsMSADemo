@@ -1,0 +1,56 @@
+name: .NET
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build_and_test:
+    name: Build and test
+    runs-on: ubuntu-latest
+      
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+    - name: Setup .NET SDK 6.0 LTS
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Setup Azure Functions Core Tools
+      shell: pwsh
+      run: npm install -g azure-functions-core-tools@3 --unsafe-perm true
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Start containers
+      run: docker-compose -f "DevOps/docker-compose.yml" up -d --build
+    - name: Test function app (Non-Windows)
+      shell: pwsh
+      run: |
+            dir
+
+            $rootDir = $pwd.Path
+
+            cd ./Services/HttpTriggerQueueOutput
+            Start-Process -NoNewWindow func @("start","--verbose","false", "--port","7071")
+            Start-Sleep -s 60
+            
+            cd $rootDir/Services/QueueTriggerCosmosOutput
+            Start-Process -NoNewWindow func @("start","--verbose","false", "--port","7072")
+            Start-Sleep -s 60
+
+            cd $rootDir/tests/HttpTriggerCosmosOutputTest
+            dotnet test .
+            cd $rootDir/tests/HttpTriggerQueueOutputTest
+            dotnet test .
+            cd $rootDir/tests/QueueTriggerCosmosOutputTest
+            dotnet test .
+            
+            cd $rootDir  
+
