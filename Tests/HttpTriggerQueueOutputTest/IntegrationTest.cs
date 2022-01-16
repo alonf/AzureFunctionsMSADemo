@@ -38,6 +38,8 @@ public class IntegrationTest
             cancellationTokenSource.Cancel();
         });
 
+        await _queueClient.CreateIfNotExistsAsync(cancellationToken:cancellationTokenSource.Token);
+
         _logger.LogInformation("Deleting all old messages from the queue");
         //clear all old messages
         await _queueClient.ClearMessagesAsync(cancellationTokenSource.Token);
