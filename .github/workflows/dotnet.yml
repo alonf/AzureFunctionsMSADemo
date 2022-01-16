@@ -22,11 +22,11 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore Services dependencies
-      run: dotnet restore Services/*/*.csproj
+      run: dotnet restore Services
     - name: Restore Tests dependencies
-      run: dotnet restore Tests/*/*.csproj
+      run: dotnet restore Tests
     - name: Restore Utilities dependencies
-      run: dotnet restore Utilities/*/*.csproj
+      run: dotnet restore Utilities
     - name: Setup Azure Functions Core Tools
       shell: pwsh
       run: npm install -g azure-functions-core-tools@3 --unsafe-perm true
