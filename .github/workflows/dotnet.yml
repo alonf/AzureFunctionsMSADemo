@@ -41,10 +41,10 @@ jobs:
       shell: bash
       run: |
            sleep 60
+           sudo apt-get install ca-certificates -y
            ipaddr="`ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}' | head -n 1`"
            sudo curl -k https://$ipaddr:8081/_explorer/emulator.pem > emulator.cert
            sudo cp emulator.cert /usr/local/share/ca-certificates/emulatorcert.crt
-           sudo dpkg-reconfigure ca-certificates
            sudo update-ca-certificates --verbose
            
     - name: Start function apps
