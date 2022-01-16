@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevOps", "DevOps", "{12FE51FE-6D5A-4CEF-BD24-6F3941EDDE58}"
 	ProjectSection(SolutionItems) = preProject
-		DevOps\docker-compose.yml = DevOps\docker-compose.yml
+		DevOps\local-docker-compose.yml = DevOps\local-docker-compose.yml
 		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
 		DevOps\run.cmd = DevOps\run.cmd
 	EndProjectSection
