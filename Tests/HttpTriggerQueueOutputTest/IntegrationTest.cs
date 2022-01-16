@@ -85,7 +85,7 @@ public class IntegrationTest
         _logger.LogInformation("Deleting queue message");
         await _queueClient.DeleteMessageAsync(message.MessageId, message.PopReceipt, cancellationTokenSource.Token);
 
-        var textForApproval = text.Split("\r\n").Where(l => !l.Contains("$AzureWebJobsParentId")).
+        var textForApproval = text.Split(Environment.NewLine).Where(l => !l.Contains("$AzureWebJobsParentId")).
             Aggregate(new StringBuilder(), (sb, line) => sb.Append(line), sb => sb.ToString());
 
         _logger.LogInformation($"Verifying result: {textForApproval}");
