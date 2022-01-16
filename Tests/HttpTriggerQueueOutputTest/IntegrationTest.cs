@@ -1,8 +1,11 @@
 using ApprovalTests;
 using ApprovalTests.Reporters;
+using Azure;
 using Azure.Storage.Queues;
+using Azure.Storage.Queues.Models;
 using HttpTriggerService;
 using Microsoft.Extensions.Logging;
+using Polly;
 using System;
 using System.Linq;
 using System.Text;
@@ -49,8 +52,24 @@ public class IntegrationTest
         await _client.SendAsync(new Data { Name = "A test message", Value = 42 }, cancellationTokenSource.Token);
 
         _logger.LogInformation("Receiving queue message");
-        var response = await _queueClient.ReceiveMessageAsync(cancellationToken: cancellationTokenSource.Token);
+        
+        Response<QueueMessage>? response = null;
+        
+        Policy.Handle<Exception>().OrResult(false).WaitAndRetry(10, count =>
+        {
+            return TimeSpan.FromSeconds(count);
+        }).ExecuteAndCapture((ct) =>
+        {
+            ct.ThrowIfCancellationRequested();
+            response = _queueClient.ReceiveMessage(cancellationToken: cancellationTokenSource.Token);
+            return response.Value != null;
+        }, cancellationTokenSource.Token);
+        
+        Assert.NotNull(response?.Value);
+
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
         var message = response.Value;
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
         var body = Convert.FromBase64String(message.Body.ToString());
         var text = Encoding.UTF8.GetString(body);
 
