@@ -47,6 +47,11 @@ jobs:
            sudo cp emulator.cert /usr/local/share/ca-certificates/emulatorcert.crt
            sudo update-ca-certificates --verbose
            
+           sudo apt-get install gnutls-cli -y
+           gnutls-cli --print-cert https://$ipaddr:8081/_explorer/ < /dev/null > cosmosEmulator.certs
+           sudo cp cosmosEmulator.certs /usr/local/share/ca-certificates/emulatorcert.crt
+           sudo update-ca-certificates --verbose
+
     - name: Start function apps
       shell: pwsh
       run: |
