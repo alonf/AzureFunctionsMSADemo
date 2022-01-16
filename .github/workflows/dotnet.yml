@@ -43,9 +43,9 @@ jobs:
            sudo apt-get install libssl-dev
            sleep 40
            ipaddr="`ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}' | head -n 1`"
-           sudo curl -k https://$ipaddr:8081/_explorer/emulator.pem > cosmosDb.pem
-           sudo openssl x509 -outform der -in cosmosDb.pem -out cosmosDb.crt
+           sudo curl -k https://$ipaddr:8081/_explorer/emulator.pem > emulatorcert.pem
            sudo cp cosmosDb.cert /usr/local/share/ca-certificates/emulatorcert.crt
+           sudo dpkg-reconfigure ca-certificates
            sudo update-ca-certificates --fresh --verbose
            
     - name: Start function apps
