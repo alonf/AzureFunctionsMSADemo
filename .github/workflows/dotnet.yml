@@ -61,11 +61,11 @@ jobs:
 
             cd ./Services/HttpTriggerQueueOutput
             Start-Process -NoNewWindow func -ArgumentList "host","start","--port","7071"
-            Start-Sleep -s 10
+            Start-Sleep -s 40
             
             cd $rootDir/Services/QueueTriggerCosmosOutput
             Start-Process -NoNewWindow func -ArgumentList "host","start","--port","7072"
-            Start-Sleep -s 10
+            Start-Sleep -s 40
             netstat -lt
             cd $rootDir/Tests/HttpTriggerQueueOutputTest
             dotnet test . -c Debug
