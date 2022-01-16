@@ -38,6 +38,7 @@ public class IntegrationTest
             cancellationTokenSource.Cancel();
         });
 
+        _logger.LogInformation("Create the queue if not exist");
         await _queueClient.CreateIfNotExistsAsync(cancellationToken:cancellationTokenSource.Token);
 
         _logger.LogInformation("Deleting all old messages from the queue");
