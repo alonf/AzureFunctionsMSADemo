@@ -90,7 +90,7 @@ public class IntegrationTest
 
         _logger.LogInformation("Verifying result:");
         _logger.LogInformation(textForApproval);
-        Approvals.VerifyJson(textForApproval);
+        Approvals.Verify(textForApproval);
 
     }
 }
