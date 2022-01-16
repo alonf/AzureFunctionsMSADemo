@@ -26,7 +26,6 @@ jobs:
     - name: Setup Azure Functions Core Tools
       shell: bash
       run: |
-        #npm install -g azure-functions-core-tools@3 --unsafe-perm true
         wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
         sudo dpkg -i packages-microsoft-prod.deb
         sudo apt-get update
@@ -41,12 +40,6 @@ jobs:
       shell: bash
       run: |
            sleep 60
-           #sudo apt-get install ca-certificates -y
-           #ipaddr="`ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}' | head -n 1`"
-           #sudo curl -k https://$ipaddr:8081/_explorer/emulator.pem > emulator.cert
-           #sudo cp emulator.cert /usr/local/share/ca-certificates/emulatorcert.crt
-           #sudo update-ca-certificates --verbose
-           
            EMULATOR_HOST=localhost
            EMULATOR_PORT=8081
            EMULATOR_CERT_PATH=/tmp/cosmos_emulator.cert
