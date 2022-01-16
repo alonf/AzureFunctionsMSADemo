@@ -64,11 +64,11 @@ jobs:
             Start-Process -NoNewWindow func -ArgumentList "host","start","--port","7072"
             Start-Sleep -s 60
 
-            cd $rootDir/tests/HttpTriggerCosmosOutputTest
+            cd $rootDir/Tests/HttpTriggerCosmosOutputTest
             dotnet test .
-            cd $rootDir/tests/HttpTriggerQueueOutputTest
+            cd $rootDir/Tests/HttpTriggerQueueOutputTest
             dotnet test .
-            cd $rootDir/tests/QueueTriggerCosmosOutputTest
+            cd $rootDir/Tests/QueueTriggerCosmosOutputTest
             dotnet test .
             
             cd $rootDir  
