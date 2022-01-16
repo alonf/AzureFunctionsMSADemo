@@ -49,6 +49,13 @@ jobs:
            sudo cp cosmosDb.cert /usr/local/share/ca-certificates/emulatorcert.crt
            sudo update-ca-certificates
            
+    - name: Install .NET 5 runtime for Azure function depemdency
+      shell: bash
+      run: |
+            sudo apt-get install -y apt-transport-https && \
+            sudo apt-get update && \
+            sudo apt-get install -y aspnetcore-runtime-5.0
+
     - name: Start function apps
       shell: pwsh
       run: |
