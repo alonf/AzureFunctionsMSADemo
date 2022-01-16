@@ -62,7 +62,14 @@ public class IntegrationTest
         {
             ct.ThrowIfCancellationRequested();
             response = _queueClient.ReceiveMessage(cancellationToken: cancellationTokenSource.Token);
-            return response.Value != null;
+            if (response.Value == null)
+            {
+                _logger.LogWarning($"ReceiveMessage: Nothing.");
+                return false;
+            }
+            //else
+            _logger.LogInformation($"ReceiveMessage: {response.Value}");
+            return true;
         }, cancellationTokenSource.Token);
         
         Assert.NotNull(response?.Value);
