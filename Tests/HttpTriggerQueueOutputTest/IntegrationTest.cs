@@ -1,4 +1,5 @@
 using ApprovalTests;
+using ApprovalTests.Namers;
 using ApprovalTests.Reporters;
 using Azure;
 using Azure.Storage.Queues;
@@ -15,7 +16,7 @@ using Xunit;
 
 namespace HttpTriggerQueueOutputTest;
 
-[UseReporter(typeof(DiffReporter))]
+[UseReporter(typeof(DiffReporter)), UseApprovalSubdirectory("Approvals")]
 public class IntegrationTest
 {
     private readonly Client _client;
