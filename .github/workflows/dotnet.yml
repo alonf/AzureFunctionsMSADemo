@@ -41,15 +41,17 @@ jobs:
       shell: bash
       run: |
            sleep 60
-           sudo apt-get install ca-certificates -y
-           ipaddr="`ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}' | head -n 1`"
-           sudo curl -k https://$ipaddr:8081/_explorer/emulator.pem > emulator.cert
-           sudo cp emulator.cert /usr/local/share/ca-certificates/emulatorcert.crt
-           sudo update-ca-certificates --verbose
+           #sudo apt-get install ca-certificates -y
+           #ipaddr="`ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}' | head -n 1`"
+           #sudo curl -k https://$ipaddr:8081/_explorer/emulator.pem > emulator.cert
+           #sudo cp emulator.cert /usr/local/share/ca-certificates/emulatorcert.crt
+           #sudo update-ca-certificates --verbose
            
-           sudo apt-get install gnutls-cli -y
-           gnutls-cli --print-cert https://$ipaddr:8081/_explorer/ < /dev/null > cosmosEmulator.certs
-           sudo cp cosmosEmulator.certs /usr/local/share/ca-certificates/emulatorcert.crt
+           EMULATOR_HOST=localhost
+           EMULATOR_PORT=8081
+           EMULATOR_CERT_PATH=/tmp/cosmos_emulator.cert
+           openssl s_client -connect ${EMULATOR_HOST}:${EMULATOR_PORT} </dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > $EMULATOR_CERT_PATH
+           sudo cp $EMULATOR_CERT_PATH /usr/local/share/ca-certificates/cosmos_emulator.crt
            sudo update-ca-certificates --verbose
 
     - name: Start function apps
