@@ -88,7 +88,7 @@ public class IntegrationTest
         var textForApproval = text.Split("\r\n").Where(l => !l.Contains("$AzureWebJobsParentId")).
             Aggregate(new StringBuilder(), (sb, line) => sb.Append(line), sb => sb.ToString());
 
-        _logger.LogInformation("Verifying result:");
+        _logger.LogInformation($"Verifying result: {textForApproval}");
         _logger.LogInformation(textForApproval);
         Approvals.Verify(textForApproval);
 
