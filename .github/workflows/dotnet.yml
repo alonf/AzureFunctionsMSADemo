@@ -40,11 +40,9 @@ jobs:
     - name: Copy certificate from CosmosDB Emulator
       shell: bash
       run: |
-      
-           sleep 60
+           sudo apt-get install libssl-dev
+           sleep 40
            ipaddr="`ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}' | head -n 1`"
-           #docker pull mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
-           #docker run -p 8081:8081 -p 10251:10251 -p 10252:10252 -p 10253:10253 -p 10254:10254  -m 3g --cpus=2.0 --name=test-linux-emulator -e AZURE_COSMOS_EMULATOR_PARTITION_COUNT=10 -e AZURE_COSMOS_EMULATOR_ENABLE_DATA_PERSISTENCE=true -e AZURE_COSMOS_EMULATOR_IP_ADDRESS_OVERRIDE=$ipaddr mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
            sudo curl -k https://$ipaddr:8081/_explorer/emulator.pem > cosmosDb.pem
            sudo openssl x509 -outform der -in cosmosDb.pem -out cosmosDb.crt
            sudo cp cosmosDb.cert /usr/local/share/ca-certificates/emulatorcert.crt
