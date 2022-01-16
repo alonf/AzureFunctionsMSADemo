@@ -52,7 +52,7 @@ jobs:
            EMULATOR_CERT_PATH=/tmp/cosmos_emulator.cert
            openssl s_client -connect ${EMULATOR_HOST}:${EMULATOR_PORT} </dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > $EMULATOR_CERT_PATH
            sudo cp $EMULATOR_CERT_PATH /usr/local/share/ca-certificates/cosmos_emulator.crt
-           sudo update-ca-certificates --verbose
+           sudo update-ca-certificates
 
     - name: Start function apps
       shell: pwsh
@@ -66,7 +66,7 @@ jobs:
             cd $rootDir/Services/QueueTriggerCosmosOutput
             Start-Process -NoNewWindow func -ArgumentList "host","start","--port","7072"
             Start-Sleep -s 10
-
+            netstat -lt
             cd $rootDir/Tests/HttpTriggerQueueOutputTest
             dotnet test . -c Debug
             cd $rootDir/Tests/QueueTriggerCosmosOutputTest
