@@ -69,7 +69,7 @@ public class IntegrationTest
                 return false;
             }
             //else
-            _logger.LogInformation($"ReceiveMessage: {response.Value}");
+            _logger.LogInformation($"ReceiveMessage...");
             return true;
         }, cancellationTokenSource.Token);
         
@@ -81,6 +81,7 @@ public class IntegrationTest
         var body = Convert.FromBase64String(message.Body.ToString());
         var text = Encoding.UTF8.GetString(body);
 
+        _logger.LogInformation($"Received text: {text}");
         _logger.LogInformation("Deleting queue message");
         await _queueClient.DeleteMessageAsync(message.MessageId, message.PopReceipt, cancellationTokenSource.Token);
 
