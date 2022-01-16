@@ -43,7 +43,7 @@ jobs:
            sudo cp cosmosDb.cert /usr/local/share/ca-certificates/emulatorcert.crt
            sudo update-ca-certificates
            
-    - name: Test function app (Non-Windows)
+    - name: Start function apps
       shell: pwsh
       run: |
             dir
@@ -51,11 +51,11 @@ jobs:
             $rootDir = $pwd.Path
 
             cd ./Services/HttpTriggerQueueOutput
-            Start-Process -NoNewWindow func @("start","--verbose","false", "--port","7071")
+            Start-Process -NoNewWindow func -ArgumentList "host","start","--port","7071"
             Start-Sleep -s 60
             
             cd $rootDir/Services/QueueTriggerCosmosOutput
-            Start-Process -NoNewWindow func @("start","--verbose","false", "--port","7072")
+            Start-Process -NoNewWindow func -ArgumentList "host","start","--port","7072"
             Start-Sleep -s 60
 
             cd $rootDir/tests/HttpTriggerCosmosOutputTest
