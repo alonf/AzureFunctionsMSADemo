@@ -21,17 +21,22 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
-    - name: Restore dependencies
+    - name: Restore Services dependencies
       run: dotnet restore Services/*/*.csproj
-           dotnet restore Tests/*/*.csproj
-           dotnet restore Utilities/*/*.csproj
+    - name: Restore Tests dependencies
+      run: dotnet restore Tests/*/*.csproj
+    - name: Restore Utilities dependencies
+      run: dotnet restore Utilities/*/*.csproj
     - name: Setup Azure Functions Core Tools
       shell: pwsh
       run: npm install -g azure-functions-core-tools@3 --unsafe-perm true
-    - name: Build
+    - name: Build Utilities
+      run: dotnet build --no-restore Utilities/*/*.csproj
+    - name: Build Services
       run: dotnet build --no-restore Services/*/*.csproj
-           dotnet build --no-restore Tests/*/*.csproj
-           dotnet build --no-restore Utilities/*/*.csproj
+    - name: Build Tests
+      run: dotnet build --no-restore Tests/*/*.csproj
+    
     - name: Start containers
       run: docker-compose -f "DevOps/docker-compose.yml" up -d --build
     - name: Test function app (Non-Windows)
