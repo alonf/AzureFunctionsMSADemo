@@ -52,17 +52,15 @@ jobs:
     - name: Start function apps
       shell: pwsh
       run: |
-            dir
-
             $rootDir = $pwd.Path
 
             cd ./Services/HttpTriggerQueueOutput
             Start-Process -NoNewWindow func -ArgumentList "host","start","--port","7071"
-            Start-Sleep -s 60
+            Start-Sleep -s 10
             
             cd $rootDir/Services/QueueTriggerCosmosOutput
             Start-Process -NoNewWindow func -ArgumentList "host","start","--port","7072"
-            Start-Sleep -s 60
+            Start-Sleep -s 10
 
             cd $rootDir/Tests/HttpTriggerQueueOutputTest
             dotnet test . -c Debug
