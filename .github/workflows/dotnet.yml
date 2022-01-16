@@ -65,11 +65,11 @@ jobs:
             Start-Sleep -s 60
 
             cd $rootDir/Tests/HttpTriggerCosmosOutputTest
-            dotnet test .
+            dotnet test . -c Debug
             cd $rootDir/Tests/HttpTriggerQueueOutputTest
-            dotnet test .
+            dotnet test . -c Debug
             cd $rootDir/Tests/QueueTriggerCosmosOutputTest
-            dotnet test .
+            dotnet test . -c Debug
             
             cd $rootDir  
 
