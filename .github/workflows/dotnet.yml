@@ -45,7 +45,7 @@ jobs:
            sudo curl -k https://$ipaddr:8081/_explorer/emulator.pem > emulator.cert
            sudo cp emulator.cert /usr/local/share/ca-certificates/emulatorcert.crt
            sudo dpkg-reconfigure ca-certificates
-           sudo update-ca-certificates --fresh --verbose
+           sudo update-ca-certificates --verbose
            
     - name: Start function apps
       shell: pwsh
