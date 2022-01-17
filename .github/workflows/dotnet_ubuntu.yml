@@ -58,7 +58,7 @@ jobs:
             cd $rootDir/Services/QueueTriggerCosmosOutput
             Start-Process -NoNewWindow func -ArgumentList "host","start","--port","7072"
             Start-Sleep -s 40
-            netstat -lt
+            
             cd $rootDir/Tests/HttpTriggerQueueOutputTest
             dotnet test . -c Debug
             cd $rootDir/Tests/QueueTriggerCosmosOutputTest

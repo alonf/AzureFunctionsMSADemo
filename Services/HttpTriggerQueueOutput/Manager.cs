@@ -27,7 +27,7 @@ public class Manager
     [OpenApiSecurity("function_key", SecuritySchemeType.ApiKey, Name = "code", In = OpenApiSecurityLocationType.Query)]
     [OpenApiRequestBody(contentType: "application/json", bodyType: typeof(Data), Description = "Data", Required = true)]
     [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.OK, Summary = "The success result", Description = "Operation succeeded")]
-    [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.BadRequest, Summary = "Invalid Lorem", Description = "Bad request")]
+    [OpenApiResponseWithoutBody(statusCode: HttpStatusCode.BadRequest, Summary = "Invalid Request", Description = "Bad request")]
 
     public async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req, [Queue("accessor", Connection = "StorageConnectionAppSetting")] ICollector<Data> queueCollector)
