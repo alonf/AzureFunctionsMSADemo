@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevOps", "DevOps", "{12FE51
 	ProjectSection(SolutionItems) = preProject
 		DevOps\docker-compose.yml = DevOps\docker-compose.yml
 		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+		.github\workflows\dotnet_windows.yml = .github\workflows\dotnet_windows.yml
 		DevOps\run.cmd = DevOps\run.cmd
 	EndProjectSection
 EndProject
