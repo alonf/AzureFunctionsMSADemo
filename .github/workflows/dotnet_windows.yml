@@ -23,13 +23,14 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: Setup Azure Functions Core Tools
+    - name: Download Azure Functions Core Tools
       uses: suisei-cn/actions-download-file@v1
       id: downloadfile
       with:
         name: Function V4 tools
         url: "https://go.microsoft.com/fwlink/?linkid=2174087"
         target: .
+    - name: Install Azure Functions Core Tools
       shell: pwsh
       run: Start-Process msiexec.exe -Wait -ArgumentList '/I func-cli-x64.msi /quiet'
     - name: Build
