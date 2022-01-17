@@ -38,7 +38,7 @@ jobs:
       run:  |
            export ipaddr="`ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}' | head -n 1`"
            docker-compose -f "DevOps/docker-compose.yml" up -d --build
-    -      sleep 60
+           sleep 60
            EMULATOR_HOST=${ipaddr}
            EMULATOR_PORT=8081
            EMULATOR_CERT_PATH=/tmp/cosmos_emulator.cert
