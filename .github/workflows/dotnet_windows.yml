@@ -33,7 +33,7 @@ jobs:
     #  shell: pwsh
     #  run: Start-Process msiexec.exe -Wait -ArgumentList '/I func-cli-x64.msi /quiet'
     - name: func 4.x
-      run: npm i -g azure-functions-core-tools@4 --unsafe-perm true 
+      run: npm i azure-functions-core-tools@4 --unsafe-perm true 
     - name: Build
       run: dotnet build --no-restore 
     - name: 'Install Cosmos Emulator'
@@ -48,17 +48,13 @@ jobs:
       shell: pwsh
       run: |
             $rootDir = $pwd.Path
-            echo ***
-            dir %appdata%
-            echo ***
-            dir %appdata%\npm\node_modules\azure-functions-core-tools\bin\
-            echo ***
+           
             cd ./Services/HttpTriggerQueueOutput
-            Start-Process -NoNewWindow %appdata%\npm\node_modules\azure-functions-core-tools\bin\func.exe -ArgumentList "host","start","--port","7071"
+            Start-Process -NoNewWindow .\node_modules\azure-functions-core-tools\bin\func.exe -ArgumentList "host","start","--port","7071"
             Start-Sleep -s 40
             
             cd $rootDir/Services/QueueTriggerCosmosOutput
-            Start-Process -NoNewWindow %appdata%\npm\node_modules\azure-functions-core-tools\bin\func.exe -ArgumentList "host","start","--port","7072"
+            Start-Process -NoNewWindow %.\node_modules\azure-functions-core-tools\bin\func.exe -ArgumentList "host","start","--port","7072"
             Start-Sleep -s 40
             netstat -lt
             cd $rootDir/Tests/HttpTriggerQueueOutputTest
