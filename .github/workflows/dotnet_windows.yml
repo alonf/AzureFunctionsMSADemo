@@ -24,7 +24,14 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Setup Azure Functions Core Tools
-      uses: Azure/functions-action@v4
+      uses: suisei-cn/actions-download-file@v1
+      id: downloadfile
+      with:
+        name: Function V4 tools
+        url: "https://go.microsoft.com/fwlink/?linkid=2174087"
+        target: .
+      shell: pwsh
+      run: Start-Process msiexec.exe -Wait -ArgumentList '/I func-cli-x64.msi /quiet'
     - name: Build
       run: dotnet build --no-restore 
     - name: 'Install Cosmos Emulator'
