@@ -14,9 +14,9 @@ services:
   cosmosdb:
     container_name: cosmosdb
     image: "mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator"
-    tty: true
+#    tty: true
     restart: always
-    mem_limit: 3G
+    mem_limit: 2G
     cpu_count: 2
     environment:
       - AZURE_COSMOS_EMULATOR_PARTITION_COUNT=10
@@ -34,8 +34,7 @@ services:
        - "10255:10255"
        - "10256:10256"
        - "10350:10350"
-    expose: 
-       - "8081"
+
     volumes:
        - vol_cosmos:/data/db
     
