@@ -39,8 +39,9 @@ jobs:
     - name: Copy certificate from CosmosDB Emulator
       shell: bash
       run: |
-           sleep 120
-           EMULATOR_HOST=localhost:8082
+           sleep 60
+           EMULATOR_HOST=localhost
+           EMULATOR_PORT=8081
            EMULATOR_CERT_PATH=/tmp/cosmos_emulator.cert
            openssl s_client -connect ${EMULATOR_HOST}:${EMULATOR_PORT} </dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > $EMULATOR_CERT_PATH
            sudo cp $EMULATOR_CERT_PATH /usr/local/share/ca-certificates/cosmos_emulator.crt
