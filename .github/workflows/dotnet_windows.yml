@@ -31,7 +31,7 @@ jobs:
         url: "https://go.microsoft.com/fwlink/?linkid=2174087"
     - name: Install Azure Functions Core Tools
       shell: pwsh
-      run: Start-Process msiexec.exe -Wait -ArgumentList '/I public/func-cli-x64.msi /quiet'
+      run: Start-Process msiexec.exe -Wait -ArgumentList '/I func-cli-x64.msi /quiet'
     - name: Build
       run: dotnet build --no-restore 
     - name: 'Install Cosmos Emulator'
