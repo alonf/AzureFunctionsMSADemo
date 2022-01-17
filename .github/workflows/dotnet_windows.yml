@@ -24,9 +24,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Setup Azure Functions Core Tools
-      shell: pwsh
-      run: |
-        choco install azure-functions-core-tools-4
+      uses: Azure/functions-action@v4
     - name: Build
       run: dotnet build --no-restore 
     - name: 'Install Cosmos Emulator'

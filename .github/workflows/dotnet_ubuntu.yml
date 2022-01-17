@@ -33,14 +33,13 @@ jobs:
 
     - name: Build
       run: dotnet build --no-restore 
-    
-    - name: Start containers
-      run: docker-compose -f "DevOps/docker-compose.yml" up -d --build
-    - name: Copy certificate from CosmosDB Emulator
+    - name: Start containers 
       shell: bash
-      run: |
-           sleep 60
-           EMULATOR_HOST=localhost
+      run:  |
+           export ipaddr="`ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}' | head -n 1`"
+           docker-compose -f "DevOps/docker-compose.yml" up -d --build
+    -      sleep 60
+           EMULATOR_HOST=${ipaddr}
            EMULATOR_PORT=8081
            EMULATOR_CERT_PATH=/tmp/cosmos_emulator.cert
            openssl s_client -connect ${EMULATOR_HOST}:${EMULATOR_PORT} </dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > $EMULATOR_CERT_PATH
