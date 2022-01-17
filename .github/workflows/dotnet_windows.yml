@@ -1,4 +1,4 @@
-name: .NET
+name: .NET Windows
 
 on:
   push:
@@ -27,22 +27,15 @@ jobs:
       shell: pwsh
       run: |
         npm i -g azure-functions-core-tools@4 --unsafe-perm true
-
     - name: Build
       run: dotnet build --no-restore 
-    
-    - uses: southpolesteve/cosmos-emulator-github-action@v1
-    - name: 'npm ci'
-      run: npm ci
-    - name: 'npm test'
-      run: npm test
-
+    - name: 'Install Cosmos Emulator'
+      uses: southpolesteve/cosmos-emulator-github-action@v1
     - name: Install Azurite
       id: azuright
       uses: potatoqualitee/azuright@v1.1
       with:
         self-signed-cert: true
-
     
     - name: Start function apps
       shell: pwsh
