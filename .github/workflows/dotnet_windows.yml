@@ -28,7 +28,7 @@ jobs:
       id: downloadfile
       with:
         name: Function V4 tools
-        url: "https://go.microsoft.com/fwlink/?linkid=2174087"
+        url: "https://alonfileshare.blob.core.windows.net/alonshare/func-cli-x64.msi?sp=r&st=2022-01-17T13:17:20Z&se=2024-01-17T21:17:20Z&sv=2020-08-04&sr=b&sig=d59%2FgSLx2yqrWipBZK48%2Fy2pKHi9AR6jZmttwIBSszs%3D"
     - name: Install Azure Functions Core Tools
       shell: pwsh
       run: Start-Process msiexec.exe -Wait -ArgumentList '/I func-cli-x64.msi /quiet'

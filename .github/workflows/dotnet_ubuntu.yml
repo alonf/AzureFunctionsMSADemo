@@ -37,8 +37,7 @@ jobs:
       shell: bash
       run:  |
            export ipaddr="`ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}' | head -n 1`"
-           echo AZURE_COSMOS_EMULATOR_IP_ADDRESS_OVERRIDE=$ipaddr > env_file
-           docker-compose  --env-file ./env_file -f "DevOps/docker-compose.yml" up -d --build 
+           docker-compose  -f "DevOps/docker-compose.yml" up -d --build 
            sleep 60
            EMULATOR_HOST=${ipaddr}
            EMULATOR_PORT=8081
