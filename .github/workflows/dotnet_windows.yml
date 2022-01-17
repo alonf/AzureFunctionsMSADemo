@@ -23,16 +23,17 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: Download Azure Functions Core Tools
-      uses: suisei-cn/actions-download-file@v1
-      id: downloadfile
-      with:
-        name: Function V4 tools
-        url: "https://alonfileshare.blob.core.windows.net/alonshare/func-cli-x64.msi?sp=r&st=2022-01-17T13:17:20Z&se=2024-01-17T21:17:20Z&sv=2020-08-04&sr=b&sig=d59%2FgSLx2yqrWipBZK48%2Fy2pKHi9AR6jZmttwIBSszs%3D"
-    - name: Install Azure Functions Core Tools
-      shell: pwsh
-      run: choco install azure-functions-core-tools
-      #Start-Process msiexec.exe -Wait -ArgumentList '/I func-cli-x64.msi'
+   # - name: Download Azure Functions Core Tools
+   #   uses: suisei-cn/actions-download-file@v1
+   #   id: downloadfile
+   #   with:
+   #     name: Function V4 tools
+   #     url: "https://alonfileshare.blob.core.windows.net/alonshare/func-cli-x64.msi?sp=r&st=2022-01-17T13:17:20Z&se=2024-01-17T21:17:20Z&sv=2020-08-04&sr=b&sig=d59%2FgSLx2yqrWipBZK48%2Fy2pKHi9AR6jZmttwIBSszs%3D"
+    #- name: Install Azure Functions Core Tools
+    #  shell: pwsh
+    #  run: Start-Process msiexec.exe -Wait -ArgumentList '/I func-cli-x64.msi /quiet'
+    - name: func 4.x
+      run: npm i -g azure-functions-core-tools@4 --unsafe-perm true 
     - name: Build
       run: dotnet build --no-restore 
     - name: 'Install Cosmos Emulator'
