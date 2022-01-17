@@ -54,7 +54,7 @@ jobs:
             Start-Sleep -s 40
             
             cd $rootDir/Services/QueueTriggerCosmosOutput
-            Start-Process -NoNewWindow %.\node_modules\azure-functions-core-tools\bin\func.exe -ArgumentList "host","start","--port","7072"
+            Start-Process -NoNewWindow .\node_modules\azure-functions-core-tools\bin\func.exe -ArgumentList "host","start","--port","7072"
             Start-Sleep -s 40
             netstat -lt
             cd $rootDir/Tests/HttpTriggerQueueOutputTest
