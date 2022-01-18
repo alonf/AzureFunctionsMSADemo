@@ -52,7 +52,7 @@ jobs:
       shell: pwsh
       run: |
             $rootDir = $pwd.Path
-            $text = Get-Content $filePath -Raw
+            $text = Get-Content ipaddr.txt -Raw
 
             cd ./Services/HttpTriggerQueueOutput
             Start-Process -NoNewWindow func -ArgumentList "host","start","--port","7071"
