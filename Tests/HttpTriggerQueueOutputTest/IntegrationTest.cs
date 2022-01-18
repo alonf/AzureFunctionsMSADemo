@@ -8,6 +8,7 @@ using HttpTriggerService;
 using Microsoft.Extensions.Logging;
 using Polly;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -38,7 +39,7 @@ public class IntegrationTest
 
         _ = Task.Run(async () =>
         {
-            await Task.Delay(TimeSpan.FromMinutes(1));
+            await Task.Delay(TimeSpan.FromMinutes(Debugger.IsAttached ? 1000 : 1));
             cancellationTokenSource.Cancel();
         });
 
