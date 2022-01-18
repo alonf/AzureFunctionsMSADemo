@@ -34,7 +34,7 @@ jobs:
       shell: pwsh
       run: |
            cd DevOps
-           docker compose up azurite
+           docker-compose up azurite
     - name: Start function apps
       shell: pwsh
       run: |
