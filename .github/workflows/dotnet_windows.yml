@@ -30,12 +30,11 @@ jobs:
       run: dotnet build --no-restore 
     - name: 'Install Cosmos Emulator'
       uses: southpolesteve/cosmos-emulator-github-action@v1
-    - name: Install Azurite
-      id: azuright
-      uses: potatoqualitee/azuright@v1.1
-      with:
-        self-signed-cert: true
-    
+    - name: start Azurite docker
+      shell: pwsh
+      run: |
+           cd DevOps
+           docker compose up azurite
     - name: Start function apps
       shell: pwsh
       run: |
