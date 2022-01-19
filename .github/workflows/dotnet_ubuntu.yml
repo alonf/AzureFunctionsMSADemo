@@ -49,40 +49,45 @@ jobs:
 
 
     - name: Start function apps
-      shell: pwsh
+      shell: bash
       run: |
-            $rootDir = $pwd.Path
-            $text = Get-Content ipaddr.txt -Raw
+            #$rootDir = $pwd.Path
+            rootDir=`pwd`
+            ipaddr="`ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}' | head -n 1`"
 
             cd ./Services/HttpTriggerQueueOutput
-            Start-Process -NoNewWindow func -ArgumentList "host","start","--port","7071"
-            Start-Sleep -s 40
-            
-            cd $rootDir/Services/QueueTriggerCosmosOutput
+            #Start-Process -NoNewWindow func -ArgumentList "host","start","--port","7071"
+            func host start --port 7071 &
+            #Start-Sleep -s 40
+            sleep 40
+
+            cd ${rootDir}/Services/QueueTriggerCosmosOutput
             
             mv local.settings.json local.settings.json.original
-            sed -e s/localhost/$ipaddr/g local.settings.json.original > local.settings.json
+            sed -e 's/localhost/${ipaddr}/g' local.settings.json.original > local.settings.json
             echo "*** local.settings.json after sed ***"
             cat local.settings.json
-            Start-Process -NoNewWindow func -ArgumentList "host","start","--port","7072"
-            Start-Sleep -s 40
+            #Start-Process -NoNewWindow func -ArgumentList "host","start","--port","7072"
+            func host start --port 7072 &
+            #Start-Sleep -s 40
+            sleep 40
             
-            cd $rootDir/Tests/HttpTriggerQueueOutputTest
+            cd ${rootDir}/Tests/HttpTriggerQueueOutputTest
             dotnet test . -c Debug
            
-            cd $rootDir/Tests/QueueTriggerCosmosOutputTest
+            cd ${rootDir}/Tests/QueueTriggerCosmosOutputTest
             mv appsettings.json appsettings.json.original
             sed -e 's/localhost/${ipaddr}/g' appsettings.json.original > appsettings.json
             echo '*** appsettings.json after sed ***'
             cat appsettings.json
             dotnet test . -c Debug
 
-            cd $rootDir/Tests/HttpTriggerCosmosOutputTest
+            cd ${rootDir}/Tests/HttpTriggerCosmosOutputTest
             mv appsettings.json appsettings.json.original
             sed -e 's/localhost/${ipaddr}/g' appsettings.json.original > appsettings.json
             echo '*** appsettings.json after sed ***'
             cat appsettings.json
             dotnet test . -c Debug
             
-            cd $rootDir  
+            cd ${rootDir}
 
