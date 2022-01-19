@@ -34,7 +34,9 @@ jobs:
       shell: pwsh
       run: |
            cd DevOps
-           docker run -p 10000:10000 -p 10001:10001 -p 10002:10002 mcr.microsoft.com/azure-storage/azurite
+           npm install -g azurite
+           mkdir azurite
+           azurite --silent --location azurite
     - name: Start function apps
       shell: pwsh
       run: |
