@@ -51,26 +51,20 @@ jobs:
     - name: Start function apps
       shell: bash
       run: |
-            #$rootDir = $pwd.Path
             rootDir=`pwd`
             ipaddr="`ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}' | head -n 1`"
 
             cd ./Services/HttpTriggerQueueOutput
-            #Start-Process -NoNewWindow func -ArgumentList "host","start","--port","7071"
             func host start --port 7071 &
-            #Start-Sleep -s 40
-            sleep 40
+            sleep 20
 
             cd ${rootDir}/Services/QueueTriggerCosmosOutput
-            
             mv local.settings.json local.settings.json.original
             sed -e s/localhost/${ipaddr}/g local.settings.json.original > local.settings.json
             echo "*** local.settings.json after sed ***"
             cat local.settings.json
-            #Start-Process -NoNewWindow func -ArgumentList "host","start","--port","7072"
             func host start --port 7072 &
-            #Start-Sleep -s 40
-            sleep 40
+            sleep 20
             
             cd ${rootDir}/Tests/HttpTriggerQueueOutputTest
             dotnet test . -c Debug
