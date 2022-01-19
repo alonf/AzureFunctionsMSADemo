@@ -30,7 +30,7 @@ jobs:
       run: dotnet build --no-restore 
     - name: 'Install Cosmos Emulator'
       uses: southpolesteve/cosmos-emulator-github-action@v1
-    - name: start Azurite docker
+    - name: start Azurite
       shell: bash
       run: |
            cd DevOps
