@@ -36,7 +36,7 @@ jobs:
            cd DevOps
            npm install -g azurite
            mkdir azurite
-           Start-Process -NoNewWindow azurite  -ArgumentList "--silent" "--location" "azurite"
+           Start-Process -NoNewWindow azurite
     - name: Start function apps
       shell: pwsh
       run: |
