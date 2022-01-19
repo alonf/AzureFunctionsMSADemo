@@ -64,7 +64,7 @@ jobs:
             cd ${rootDir}/Services/QueueTriggerCosmosOutput
             
             mv local.settings.json local.settings.json.original
-            sed -e 's/localhost/${ipaddr}/g' local.settings.json.original > local.settings.json
+            sed -e s/localhost/${ipaddr}/g local.settings.json.original > local.settings.json
             echo "*** local.settings.json after sed ***"
             cat local.settings.json
             #Start-Process -NoNewWindow func -ArgumentList "host","start","--port","7072"
@@ -77,14 +77,14 @@ jobs:
            
             cd ${rootDir}/Tests/QueueTriggerCosmosOutputTest
             mv appsettings.json appsettings.json.original
-            sed -e 's/localhost/${ipaddr}/g' appsettings.json.original > appsettings.json
+            sed -e s/localhost/${ipaddr}/g appsettings.json.original > appsettings.json
             echo '*** appsettings.json after sed ***'
             cat appsettings.json
             dotnet test . -c Debug
 
             cd ${rootDir}/Tests/HttpTriggerCosmosOutputTest
             mv appsettings.json appsettings.json.original
-            sed -e 's/localhost/${ipaddr}/g' appsettings.json.original > appsettings.json
+            sed -e s/localhost/${ipaddr}/g appsettings.json.original > appsettings.json
             echo '*** appsettings.json after sed ***'
             cat appsettings.json
             dotnet test . -c Debug
